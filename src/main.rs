@@ -3,7 +3,7 @@ use yew_router::prelude::*;
 
 mod pages;
 use pages::{
-    home::Home, page_not_found::PageNotFound,
+    home::HomeModel, page_not_found::PageNotFound,
 };
 use yew::html::Scope;
 
@@ -42,7 +42,7 @@ impl Component for Model {
         }
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
             <BrowserRouter>
                 <Switch<Route> render={Switch::render(switch)} />
@@ -54,7 +54,7 @@ impl Component for Model {
 fn switch(routes: &Route) -> Html {
     match routes.clone() {
         Route::Home => {
-            html! { <Home /> }
+            html! { <HomeModel /> }
         }
         Route::NotFound => {
             html! { <PageNotFound /> }

@@ -1,10 +1,8 @@
 use yew::prelude::*;
-use yew_router::prelude::*;
-use crate::Route;
 
-pub struct PageNotFound;
+pub struct Game;
 
-impl Component for PageNotFound {
+impl Component for Game {
     type Message = ();
     type Properties = ();
 
@@ -14,12 +12,9 @@ impl Component for PageNotFound {
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
-            <>
             <h1 class="title">
-                { "Page not found" }
+                { "Game" }
             </h1>
-            <Link<Route> to={Route::Home}>{ "click here to go home" }</Link<Route>>
-            </>
         }
     }
 }
