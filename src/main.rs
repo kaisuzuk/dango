@@ -3,7 +3,7 @@ use yew_router::prelude::*;
 
 mod pages;
 use pages::{
-    home::HomeModel, page_not_found::PageNotFound,
+    home::Home, game::Game, page_not_found::PageNotFound,
 };
 use yew::html::Scope;
 
@@ -11,6 +11,8 @@ use yew::html::Scope;
 pub enum Route {
     #[at("/")]
     Home,
+    #[at("/game")]
+    Game,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -54,7 +56,10 @@ impl Component for Model {
 fn switch(routes: &Route) -> Html {
     match routes.clone() {
         Route::Home => {
-            html! { <HomeModel /> }
+            html! { <Home /> }
+        }
+        Route::Game => {
+            html! { <Game /> }
         }
         Route::NotFound => {
             html! { <PageNotFound /> }

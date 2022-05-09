@@ -4,13 +4,13 @@ use yew::html::Scope;
 use yew_router::components::Link;
 use crate::Route;
 
-pub struct HomeModel;
+pub struct Home;
 
 pub enum Msg {
-    Submit,
+    Save,
 }
 
-impl Component for HomeModel {
+impl Component for Home {
     type Message = Msg;
     type Properties = ();
 
@@ -18,14 +18,9 @@ impl Component for HomeModel {
         Self
     }
 
-    fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
+    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
-            Msg::Submit => {
-                log::info!("submit");
-                log::info!("{:?}", Route::NotFound);
-                // validInput? 
-                // yes  -> submitして画面遷移(Game)
-                // no   -> alert出して画面遷移しない
+            Msg::Save => {
                 true
             }
         }
@@ -36,12 +31,12 @@ impl Component for HomeModel {
             <>
             { self.view_title() }
             { self.view_form(ctx.link()) }
-            <Link<Route> to={Route::NotFound}>{ "click here to go home" }</Link<Route>>
+            <Link<Route> to={Route::Game}>{ "click here to play dango game!" }</Link<Route>>
             </>
         }
     }
 }
-impl HomeModel {
+impl Home {
     fn view_title(&self) -> Html {
         html!{
             <div class="container px-4 py-2">
@@ -52,7 +47,6 @@ impl HomeModel {
     fn view_form(&self, link: &Scope<Self>) -> Html {
         html! {
             <div class="container form border">
-
                 <div class="mb-3 mx-400">
                     <label class="form-label">{"だんごの数"}</label>
                     <input type="number" class="form-control" min=1 value=30/>
@@ -78,7 +72,7 @@ impl HomeModel {
                     <input class="form-control" type="file" />
                 </div>
 
-                <button onclick={link.callback(|_| Msg::Submit)} class="mt-4 btn btn-primary">{"Submit"}</button>
+                <button onclick={link.callback(|_| Msg::Save)} class="mt-4 btn btn-primary">{"入力内容を保存"}</button>
             </div>
         }
     }
